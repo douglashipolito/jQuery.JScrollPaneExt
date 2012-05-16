@@ -1,9 +1,8 @@
-
 ;(function ( $, window, undefined ) {
 
 	var pluginName = 'jScrollPaneExt',
-			document = window.document,
-			defaults = {};
+	    document = window.document,
+	    defaults = {};
 
 	function Plugin( element, options ) {
 		this.element = $(element);
@@ -20,21 +19,21 @@
 	};
 
 	Plugin.prototype.horizontalScroll = function () {
-			if(this.options.horizontalScroll) {
-				 var options = this.options,
-					 contentWidth = 0,
-					 elementWidth = this.element.width();
-
-				$.each(this.element.children(), function(index, item) {
-					item = $(item);
-					contentWidth += item.outerWidth();
-				})
-
-				this.element.width(contentWidth);
-				this.element.wrap('<div class="wrap-jspWrap" style="width:' + elementWidth + 'px;" />');
-				this.element = this.element.parent();
-			}
-			return false;
+		if(this.options.horizontalScroll) {
+			var options = this.options,
+			    contentWidth = 0,
+			    elementWidth = this.element.width();
+			
+			$.each(this.element.children(), function(index, item) {
+				item = $(item);
+				contentWidth += item.outerWidth();
+			});
+			
+			this.element.width(contentWidth);
+			this.element.wrap('<div class="wrap-jspWrap" style="width:' + elementWidth + 'px;" />');
+			this.element = this.element.parent();
+		}
+		return false;
 	};
 
 	$.fn[pluginName] = function ( options ) {
