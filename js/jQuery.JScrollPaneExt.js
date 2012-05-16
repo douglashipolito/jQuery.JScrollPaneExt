@@ -2,7 +2,9 @@
 
 	var pluginName = 'jScrollPaneExt',
 	    document = window.document,
-	    defaults = {};
+	    defaults = {
+	    	horizontalScroll : false
+	    };
 
 	function Plugin( element, options ) {
 		this.element = $(element);
