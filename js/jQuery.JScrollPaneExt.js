@@ -28,7 +28,7 @@
 			
 			$.each(this.element.children(), function(index, item) {
 				item = $(item);
-				contentWidth += item.outerWidth();
+				contentWidth += item.outerWidth(true);
 			});
 			
 			this.element.width(contentWidth);

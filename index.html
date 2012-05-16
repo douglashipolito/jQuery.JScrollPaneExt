@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>jQuery.JScrollPaneExt Sample</title>
+
+  <link rel="stylesheet" href="//jscrollpane.kelvinluck.com/style/jquery.jscrollpane.css">
+  <style type="text/css">
+    * { margin:0; padding:0; }
+    ul { list-style-type:none; height: auto; max-height: 200px; }
+    ul li { float:left; width:200px; height:225px; margin-left:10px; }
+    ul li:first-child { margin-left:0; }
+    section { width:960px; margin:0 auto; }
+  </style>
+</head>
+<body>
+
+  <section role="main">
+    <ul class="jscroll">
+      <li class="item"><img width="200" height="200" src="http://www.dummyimage.com/200x200" alt="Item"></li>
+      <li class="item"><img width="200" height="200" src="http://www.dummyimage.com/200x200" alt="Item"></li>
+      <li class="item"><img width="200" height="200" src="http://www.dummyimage.com/200x200" alt="Item"></li>
+      <li class="item"><img width="200" height="200" src="http://www.dummyimage.com/200x200" alt="Item"></li>
+      <li class="item"><img width="200" height="200" src="http://www.dummyimage.com/200x200" alt="Item"></li>
+      <li class="item"><img width="200" height="200" src="http://www.dummyimage.com/200x200" alt="Item"></li>
+      <li class="item"><img width="200" height="200" src="http://www.dummyimage.com/200x200" alt="Item"></li>
+      <li class="item"><img width="200" height="200" src="http://www.dummyimage.com/200x200" alt="Item"></li>
+    </ul>
+  </section>
+
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+  <script src="//jscrollpane.kelvinluck.com/script/jquery.jscrollpane.min.js"></script>
+  <script src="js/jQuery.jScrollPaneExt.js"></script>
+
+  <script>
+    $(function() {
+      $('.jscroll').jScrollPaneExt({
+          showArrows        : true,
+          horizontalScroll  : true
+      });
+    });
+  </script>
+</body>
+</html>
