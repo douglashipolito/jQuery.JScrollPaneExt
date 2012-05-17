@@ -21,7 +21,7 @@
 		if(this.options.horizontalScroll) {
 			this.horizontalScroll();
 		}
-		this.element.jScrollPane.call(this.element, this.options);
+		this.super = this.element.jScrollPane.call(this.element, this.options).data('jsp');
 	};
 
 	Plugin.prototype.horizontalScroll = function () {
@@ -43,7 +43,6 @@
 			}
 			
 			this.element.width(contentWidth)
-						.height(contentHeight + 16)
 						.wrap('<div class="wrap-jspWrap" style="width:' + elementWidth + 'px;" />');
 			
 			this.element = this.element.parent();
