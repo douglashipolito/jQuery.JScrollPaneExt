@@ -3,7 +3,9 @@
 	var pluginName = 'jScrollPaneExt',
 	    document = window.document,
 	    defaults = {
-	    	horizontalScroll : false
+	    	horizontalScroll : true,
+	    	contentWidth	 : 'auto',
+	    	showArrows		 : true
 	    };
 
 	function Plugin( element, options ) {
@@ -16,26 +18,37 @@
 	};
 
 	Plugin.prototype.init = function () {
-		this.horizontalScroll();
+		if(this.options.horizontalScroll) {
+			this.horizontalScroll();
+		}
 		this.element.jScrollPane.call(this.element, this.options);
 	};
 
 	Plugin.prototype.horizontalScroll = function () {
-		if(this.options.horizontalScroll) {
 			var options = this.options,
-			    contentWidth = 0,
+			    contentWidth = (typeof this.options.contentWidth === 'number') ? this.options.contentWidth : this._defaults.contentWidth,
+			    contentHeight = 0,
+			    contentContainer = {},
+			    item,
 			    elementWidth = this.element.width();
+
+			if(contentWidth === 'auto') {
+				contentWidth = 0;
+				contentContainer = this.options.contentContainer ? $(this.options.contentContainer) : this.element;
+				$.each(contentContainer.children(), function() {
+					item = $(this);
+					contentWidth += item.outerWidth(true);
+				});
+				contentHeight = item.height();
+			}
 			
-			$.each(this.element.children(), function(index, item) {
-				item = $(item);
-				contentWidth += item.outerWidth(true);
-			});
+			this.element.width(contentWidth)
+						.height(contentHeight + 16)
+						.wrap('<div class="wrap-jspWrap" style="width:' + elementWidth + 'px;" />');
 			
-			this.element.width(contentWidth);
-			this.element.wrap('<div class="wrap-jspWrap" style="width:' + elementWidth + 'px;" />');
 			this.element = this.element.parent();
-		}
-		return false;
+
+			delete this.options['contentWidth'];
 	};
 
 	$.fn[pluginName] = function ( options ) {
