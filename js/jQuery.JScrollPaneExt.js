@@ -10,7 +10,7 @@
 	    	theme			 : 'default'
 	    };
 
-	function Plugin( element, options ) {
+	function jScrollPaneExt( element, options ) {
 		this.element = $(element);
 		this.options = $.extend( {}, defaults, options) ;
 		this._defaults = defaults;
@@ -19,7 +19,7 @@
 		this.init();
 	};
 
-	Plugin.prototype.init = function () {
+	jScrollPaneExt.prototype.init = function () {
 		
 		if(this.options.horizontalScroll) {
 			this.horizontalScroll();
@@ -32,7 +32,7 @@
 		this._super = this.element.jScrollPane.call(this.element, this.options).data('jsp');
 	};
 
-	Plugin.prototype.horizontalScroll = function () {
+	jScrollPaneExt.prototype.horizontalScroll = function () {
 			var options = this.options,
 			    contentWidth = (typeof this.options.contentWidth === 'number') ? this.options.contentWidth : this._defaults.contentWidth,
 			    contentHeight = 0,
@@ -58,14 +58,14 @@
 			delete this.options['contentWidth'];
 	};
 
-	Plugin.prototype.setTheme = function () {
+	jScrollPaneExt.prototype.setTheme = function () {
 		this.element.addClass('theme-' + this.options.theme);
 	};
 
 	$.fn[pluginName] = function ( options ) {
 		return this.each(function () {
 			if (!$.data(this, 'plugin_' + pluginName)) {
-				$.data(this, 'plugin_' + pluginName, new Plugin( this, options ));
+				$.data(this, 'plugin_' + pluginName, new jScrollPaneExt( this, options ));
 			}
 		});
 	}
