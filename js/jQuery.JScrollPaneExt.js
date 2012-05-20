@@ -1,3 +1,4 @@
+
 ;(function ( $, window, undefined ) {
 
 	var pluginName = 'jScrollPaneExt',
@@ -5,7 +6,8 @@
 	    defaults = {
 	    	horizontalScroll : true,
 	    	contentWidth	 : 'auto',
-	    	showArrows		 : true
+	    	showArrows		 : true,
+	    	theme			 : 'default'
 	    };
 
 	function Plugin( element, options ) {
@@ -18,10 +20,16 @@
 	};
 
 	Plugin.prototype.init = function () {
+		
 		if(this.options.horizontalScroll) {
 			this.horizontalScroll();
 		}
-		this.super = this.element.jScrollPane.call(this.element, this.options).data('jsp');
+
+		if(this.options.theme !== 'default') {
+			this.setTheme();
+		}
+
+		this._super = this.element.jScrollPane.call(this.element, this.options).data('jsp');
 	};
 
 	Plugin.prototype.horizontalScroll = function () {
@@ -48,6 +56,10 @@
 			this.element = this.element.parent();
 
 			delete this.options['contentWidth'];
+	};
+
+	Plugin.prototype.setTheme = function () {
+		this.element.addClass('theme-' + this.options.theme);
 	};
 
 	$.fn[pluginName] = function ( options ) {
